@@ -1,7 +1,7 @@
 
 ---
 
-# ✨ Project 2: AI Prompt Enhancer
+# ✨ Project : AI Prompt Enhancer
 
 ```markdown
 # ✨ AI Prompt Enhancer
