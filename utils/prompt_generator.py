@@ -1,7 +1,15 @@
-import requests
+import os
+import google.generativeai as genai
+from dotenv import load_dotenv
 
+# Load environment variables from .env
+load_dotenv()
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+# Configure Gemini
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+# Load Gemini model
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 
 def generate_prompts(user_prompt, style):
@@ -37,7 +45,7 @@ Requirements:
 
 Make each version different.
 
-Output ONLY in the format below.
+Output ONLY in this format.
 
 VERSION 1
 
@@ -64,24 +72,10 @@ REASON:
 ...
 
 Do not write introductions.
-
 Do not write conclusions.
-
 Do not write explanations outside the format.
 """
 
-    payload = {
-        "model": "gemma3:1b",
-        "prompt": prompt,
-        "stream": False
-    }
+    response = model.generate_content(prompt)
 
-    response = requests.post(
-        OLLAMA_URL,
-        json=payload,
-        timeout=120
-    )
-
-    data = response.json()
-
-    return data["response"]
+    return response.text

@@ -10,3 +10,7 @@ MarkupSafe==3.0.3
 requests==2.34.2
 urllib3==2.7.0
 Werkzeug==3.1.8
+ollama serve
+python3 app.py
+ollama list
+ollama run gemma3:1b
